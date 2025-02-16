@@ -7,8 +7,6 @@ export default function ShoppingListPage() {
     const [shoppingList] = useLocalStorageArray("shopping", []);
     const [data, setData] = useState<string[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
-    const [isError, setIsError] = useState<boolean>(false);
-    const [error, setError] = useState<string>("");
     const router = useRouter();
 
 
@@ -33,8 +31,7 @@ export default function ShoppingListPage() {
                 const responseData = await response.json();
                 setData(responseData.data);
             } catch (err: any) {
-                setIsError(true);
-                setError(err.message || "Something went wrong");
+                throw new Error(err);
             } finally {
                 setIsLoading(false);
             }
@@ -46,7 +43,6 @@ export default function ShoppingListPage() {
     }, [shoppingList]);
 
     if (isLoading) return <div className="text-center text-gray-500 mt-10">Loading ingredients...</div>;
-    if (isError) return <div className="text-center text-red-500 mt-10">Error: {error}</div>;
 
     return (
         <div className="max-w-3xl mx-auto p-6">

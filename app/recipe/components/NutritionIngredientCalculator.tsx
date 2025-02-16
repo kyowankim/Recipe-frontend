@@ -8,6 +8,7 @@ export default function NutritionIngredientCalculator({ recipeDataResponse }: { 
 
     const ratio = servings / recipeData.servings;
 
+    //Handle the Input values of the "Servings" to ensure only positive integers are allowed
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const inputValue = event.target.valueAsNumber;
 
@@ -18,6 +19,7 @@ export default function NutritionIngredientCalculator({ recipeDataResponse }: { 
         }
     };
 
+    //Function to display ingredient information in the format "3 cups tomato"
     const displayIngredient = (ingredient: Ingredient) => {
         const ingredientAmount = (stringToNumber(ingredient.amount) * ratio).toFixed(2);
         const ingredientName = ingredient.ingredientId.replace(/_/g, ' ');

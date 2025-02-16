@@ -37,14 +37,15 @@ export default function FilterSortingHeader({ recipes, setRecipes }: SearchFilte
                     return recipe.dietaryRestrictions.includes(searchValue.toLowerCase())
             }
         })
-        setRecipes(filteredRecipes)
+        setRecipes(filteredRecipes);
     }
 
+    //Handle showing favorites
     const showFavorites = () => {
         const favoritedRecipes = recipes.filter(recipe => {
             return favorites.includes(recipe.id)
         })
-        setRecipes(favoritedRecipes)
+        setRecipes(favoritedRecipes);
     }
 
     //Helper function to obtain integer value from a string
@@ -80,11 +81,14 @@ export default function FilterSortingHeader({ recipes, setRecipes }: SearchFilte
 
     return (
         <div className="flex">
+            {/* Favorites Button */}
             <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
                 onClick={showFavorites}
             >
                 Favorites
             </button>
+
+            {/* Reset Button */}
             <button className="ml-4 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
                 onClick={() => setRecipes(allRecipes)}
             >
@@ -162,7 +166,7 @@ export default function FilterSortingHeader({ recipes, setRecipes }: SearchFilte
                 </button>
             </div>
 
-            {/* Dietary Restriction Filter */}
+            {/* Sort By Filter */}
             <DropdownMenu>
                 <DropdownMenuTrigger className="ml-5 p-2 bg-sky-200 rounded-md text-sm text-gray-900">Sort By</DropdownMenuTrigger>
                 <DropdownMenuContent>
@@ -187,24 +191,17 @@ enum Sort {
     LONGEST_PREP = "Longest Prep Time",
     SHORTEST_COOK = "Shortest Cook Time",
     LONGEST_COOK = "Longest Cook Time"
-}
+};
 
 enum FilterCategory {
     RECIPE_NAME = "Recipe Name",
     TAGS = "Tags",
     INGREDIENTS = "Ingredients",
     DIETARY_RESTRICTIONS = "Dietary Restrictions"
-}
+};
+
 type SearchFilterProps = {
     recipes: Recipe[];
     setRecipes: Dispatch<SetStateAction<Recipe[]>>;
 };
 
-enum DietaryRestrictions {
-    NONE = "none",
-    VEGAN = "vegan",
-    VEGETARIAN = "Vegetarian",
-    GLUTEN_FREE = "Gluten-Free",
-    KETO = "Keto",
-    HIGH_PROTEIN = "High-Protein"
-}

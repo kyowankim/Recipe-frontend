@@ -2,7 +2,13 @@ import { useState, useEffect } from "react";
 
 /** 
  * Custom Hook to utilize local storage
- * This function is mainly used for handling the "favorites" of recipes
+ * Input: Key: key of the local storage value
+ *        Value: Array of strings you want to store
+ * 
+ * Output: StoredArray: The stored array associated with the key within local storage
+ *         setValue: Allows you to directly set StoredArray to any array value
+ *         addItem: Add a item to the Stored Array
+ *         removeItem: Removes the item given, within the stored array
  * **/
 
 function useLocalStorageArray(key: string, initialValue: string[]) {

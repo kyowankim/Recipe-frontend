@@ -35,7 +35,6 @@ export default function RecipesDisplay({ allRecipes }: { allRecipes: Recipe[] })
 
     return (
         <>
-            {/* Header component */}
             <div className="flex flex-row justify-between p-2">
                 <FilterSortingHeader recipes={recipes} setRecipes={setRecipes} />
                 <Button variant="outline"
