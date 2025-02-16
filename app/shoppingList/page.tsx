@@ -19,7 +19,7 @@ export default function ShoppingListPage() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const url = "http://54.90.201.128:8080/api/shoppinglist";
+                const url = "/api/shoppinglist";
                 const response = await fetch(url, {
                     method: "POST",
                     body: JSON.stringify({ shoppingList }),
