@@ -4,7 +4,7 @@ import NutritionIngredientCalculator from '../components/NutritionIngredientCalc
 
 export default async function RecipePage({ params }: { params: Promise<{ [key: string]: string }> }) {
     const { id } = await params;
-    const response = await fetch(`http://54.90.201.128:8080/api/recipedata/${id}`);
+    const response = await fetch(process.env.NEXT_PUBLIC_DOMAIN + `/api/recipedata/${id}`);
     const recipeDataResponse: RecipeDataResponse = await response.json();
     const recipeData: Recipe[] = recipeDataResponse.recipe;
 
